@@ -1,4 +1,4 @@
-#**Traffic Sign Recognition** 
+# **Traffic Sign Recognition** 
 
 ---
 
@@ -27,9 +27,9 @@ The goals / steps of this project are the following:
 **This written report covers the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describes how I addressed each point in my implementation.** You may want to follow along using the [iPython notebook](https://github.com/anandman/CarND-Traffic-Sign-Classifier-Project/blob/master/Traffic_Sign_Classifier.ipynb) that was used to generate the data in this writeup. If you wish to dig in deeper than this writeup, you can follow the instructions in the [Setup](#setup) section at the bottom of this writeup to access and run the notebook yourself.
 
 ---
-###Data Set Exploration
+### Data Set Exploration
 
-####Dataset Summary
+#### Dataset Summary
 
 The code for this step is contained in the 2nd code cell of the iPython notebook.  
 
@@ -42,7 +42,7 @@ signs data set:
 * The shape of a traffic sign image is (32, 32, 3) or 32x32 pixels in RGB color.
 * The number of unique classes/labels in the data set is 43.
 
-####Exploratory Visualization
+#### Exploratory Visualization
 
 The code for this step is contained in the 3rd and 4th code cells of the iPython notebook.  
 
@@ -54,9 +54,9 @@ First is a visualization of a random sample of each of the 43 sign classes. You 
 
 ![Training Classes Chart](./writeup_images/classes-chart.png "Training Classes Chart")
 
-###Design and Test a Model Architecture
+### Design and Test a Model Architecture
 
-####<a name="preprocessing"></a>Preprocessing
+#### <a name="preprocessing"></a>Preprocessing
 
 The code for this step is contained in the 5th code cell of the iPython notebook.
 
@@ -74,7 +74,7 @@ Here is a random sample of all 43 classes after the three preprocessing techniqu
 
 ![Preprocessed Samples](./writeup_images/preprocessed-samples.png "Preprocessed Samples")
 
-####Model Architecture
+#### Model Architecture
 
 The code for my model is located in the 6th cell of the iPython notebook. 
 
@@ -103,13 +103,13 @@ And here is a tabular description of the model I used:
 | Fully connected		| outputs 43  									|
 
 
-####<a name="model"></a>Model Training
+#### <a name="model"></a>Model Training
 
 The code for training the model is located in the 8th and 9th cells of the iPython notebook, with the hyper-paramters used in the 7th cell.
 
 To train the model, I used a learning rate of 0.0005 which is higher than the default rate of 0.0001 that was used in the LeNet lab for MNIST recognition. This allowed it to train much faster while not overshooting too badly. In the future, I would consider starting with a large number and adding decay to lower it over time as the network starts to learn. The batch size was unchanged from MNIST at 128 though slightly smaller values like 100 were also good. Finally, I increased the number of epochs to 30 since there are more parameters in this model and we need more time to learn.
 
-####<a name="solution"></a>Solution Approach
+#### <a name="solution"></a>Solution Approach
 
 The code for calculating the accuracy of the model is located in the 11th cell of the iPython notebook. The 10th cell calculates the loss and accuracy data for the training and validation data.
 
@@ -122,9 +122,9 @@ This project was achievable with a relatively simple modification of the LeNet-5
 
 ![Loss & Accuracy](./writeup_images/accuracy.png "Loss & Accuracy")
 
-###Test a Model on New Images
+### Test a Model on New Images
 
-####Acquiring New Images
+#### Acquiring New Images
 
 Here are five German traffic signs that I found on the web:
 
@@ -132,7 +132,7 @@ Here are five German traffic signs that I found on the web:
 
 The first three images should be easy to classify but the 4th and 5th are skewed so may cause difficulty for the classifier, especially since I didn't augment the data with such perturbations. I load and show the images in the 12th cell if the iPython notebook.
 
-####Performance on New Images
+#### Performance on New Images
 
 The code for making predictions on my final model is located in the 13th cell of the iPython notebook.
 
@@ -150,7 +150,7 @@ Here are the results of the prediction:
 
 The model was able to correctly guess all 5 of the 5 traffic signs, for an accuracy of 100%. However, given that the model from the [solution](#solution) was only 95% accurate on the test data set, there is a chance other signs would not fare so well, or even that all five of these signs would be detected properly upon retraining of the network with other random weights.
 
-####Model Certainty - Softmax Probabilities
+#### Model Certainty - Softmax Probabilities
 
 The code for calculating the top 5 probabilities on my final model is located in the 14th cell of the iPython notebook.
 
