@@ -107,16 +107,16 @@ And here is a tabular description of the model I used:
 
 The code for training the model is located in the 8th and 9th cells of the iPython notebook, with the hyper-paramters used in the 7th cell.
 
-To train the model, I used a learning rate of 0.0009 which is much higher than the default rate of 0.0001 that was used in the LeNet lab for MNIST recognition. This allowed it to train much faster while not overshooting too badly. In the future, I would consider starting with a large number and adding decay to lower it over time as the network starts to learn. The batch size was unchanged from MNIST at 128 though slightly smaller values like 100 were also good. Finally, I increased the number of epochs to 30 since there are more parameters in this model and we need more time to learn.
+To train the model, I used a learning rate of 0.0005 which is higher than the default rate of 0.0001 that was used in the LeNet lab for MNIST recognition. This allowed it to train much faster while not overshooting too badly. In the future, I would consider starting with a large number and adding decay to lower it over time as the network starts to learn. The batch size was unchanged from MNIST at 128 though slightly smaller values like 100 were also good. Finally, I increased the number of epochs to 30 since there are more parameters in this model and we need more time to learn.
 
-####Solution Approach
+####<a name="solution"></a>Solution Approach
 
-The code for calculating the accuracy of the model is located in the 11th cell of the iPython notebook.
+The code for calculating the accuracy of the model is located in the 11th cell of the iPython notebook. The 10th cell calculates the loss and accuracy data for the training and validation data.
 
 My final model results were:
-* training set accuracy of 99.8%
-* validation set accuracy of 96.5%
-* test set accuracy of 94.7%
+* training set accuracy of 99.6%
+* validation set accuracy of 96.3%
+* test set accuracy of 95.1%
 
 This project was achievable with a relatively simple modification of the LeNet-5 network architecture, as mentioned [above](#model). I iterated through various combinations of [pre-processing](#preprocessing) to find a combination that worked well and seemed logical. As you can see in the charts below, the loss function and the training and validation accuracy increased nicely without a lot of overfitting. If I were to continue further experiments, I would consider the architecture choices mentioned in the [paper by Sermanet & LeCun](http://yann.lecun.com/exdb/publis/pdf/sermanet-ijcnn-11.pdf) and other similar research.
 
@@ -128,7 +128,7 @@ This project was achievable with a relatively simple modification of the LeNet-5
 
 Here are five German traffic signs that I found on the web:
 
-![](./writeup_images/test-images.png "")
+![Test Images](./writeup_images/test-images.png "Test Images")
 
 The first three images should be easy to classify but the 4th and 5th are skewed so may cause difficulty for the classifier, especially since I didn't augment the data with such perturbations. I load and show the images in the 12th cell if the iPython notebook.
 
@@ -138,22 +138,23 @@ The code for making predictions on my final model is located in the 13th cell of
 
 Here are the results of the prediction:
 
-| Image			        |     Prediction	      	| 
+| Image			        | Prediction		      	| 
 |:---------------------:|:-------------------------:| 
 | Speed limit (20mk/h)  | Speed limit (20km/h)		| 
 | General caution 		| General caution			|
 | Double curve			| Double curve				|
 | Keep right      		| Keep right				|
-| Roundabout mandatory	| Speed limit (100km/h)   	|
+| Roundabout mandatory	| Roundabout mandatory   	|
 
+![Test Images Predictions](./writeup_images/test-images.png "Test Images Predictions")
 
-The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set. The model correctly predicted the first three signs as expected as well as the 4th. It however, got the last one incorrect.
+The model was able to correctly guess all 5 of the 5 traffic signs, for an accuracy of 100%. However, given that the model from the [solution](#solution) was only 95% accurate on the test data set, there is a chance other signs would not fare so well, or even that all five of these signs would be detected properly upon retraining of the network with other random weights.
 
 ####Model Certainty - Softmax Probabilities
 
 The code for calculating the top 5 probabilities on my final model is located in the 14th cell of the iPython notebook.
 
-The first four images are predicted correctly at 100%. For the fifth image, the model is tentatively sure that this is a speed limit (100km/h) sign (probability of 49%), but obviously is wrong. The correct classification is "Roundabout mandatory" with a probability of only 4%. This is very likely because of the extreme angle of the image.
+The first four images are predicted correctly at 67% or better. For the fifth image, the model is correctly predicting "Roundabout mandatory" but with only 41% confidence. This is very likely because of the extreme angle of the image. I suspect if I augmented the original training data before training using perturbations, this image would have been classified with higher confidence.
 
 ![Roundabout mandatory](./writeup_images/roundabout.png "Roundabout mandatory")
 
